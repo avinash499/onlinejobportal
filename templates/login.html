@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>OJP login form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 99%;
+            z-index: 1000;
+            background-color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: black;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color:black;
+        }
+
+        .background {
+            position: relative;
+            background-image: url('https://t3.ftcdn.net/jpg/02/10/87/80/240_F_210878007_vIRqeFVZAeODdJ4dAbw4J8O6kLKzxUfi.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .left-info {
+            flex: 1;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .left-info h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .left-info p {
+            font-size: 18px;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            margin-top: 100px;
+        }
+
+        .login-card,
+        .signup-card {
+            width: 300px; /* Adjusted width */
+            background-color: #000; /* Changed background color to black */
+            color: #fff; /* Changed text color to white */
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .login-form label,
+        .signup-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="email"], /* Added email input */
+        .login-form input[type="password"],
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .login-form .password-container,
+        .signup-form .password-container {
+            position: relative;
+        }
+
+        .login-form .password-container i,
+        .signup-form .password-container i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .signup-link {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .signup-link:hover {
+            opacity: 1;
+        }
+
+        .login-form button,
+        .signup-form button {
+            width: 100%;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .login-link {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .login-link:hover {
+            opacity: 1;
+        }
+
+        .login-form button:hover,
+        .signup-form button:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+        .login-card {
+            width: 300px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation: slide-down 1s ease-out forwards;
+        }
+
+        @keyframes slide-down {
+            0% {
+                top: -50%;
+                opacity: 0;
+            }
+            100% {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .signup-form .form-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .signup-form label {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"] {
+            flex: 2;
+            width: auto;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">OJP</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="background">
+    <style>
+        .left-info {
+            color: black;
+        }
+    </style>
+
+    <div class="left-info" >
+        <h1>Welcome to Our Job Portal</h1>
+        <p>Find your dream job with us!</p>
+        <p>where people who need jobs can find jobs and companies looking for job seekers can find the perfect employees. It serves as a medium where job seekers can create profiles, upload resumes, and search for job openings across various industries and locations. Employers, on the other hand, can post job vacancies, review applicant profiles, and conduct the initial stages of the hiring process through the portal. </p>
+    </div>
+
+    <div class="content">
+        <div class="login-card">
+            <h2>Login</h2>
+            <form class="login-form" action="{% url 'login1' %}" method="post">
+                {% csrf_token %}
+                <label for="username">Username (4 or 8 digits):</label>
+                <input type="text" id="username" name="username" required placeholder="Enter 4 or 8 digits"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br> <!-- Added email input -->
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required>
+                    <i class="fa fa-eye" id="show-password"></i>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" class="signup-link">Create one</a></p>
+        </div>
+
+        <div class="signup-card" style="display: none;">
+            <h2>Signup</h2>
+            <form class="signup-form" action="{% url 'signup1' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id=" username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id=" email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id=" password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="password1" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+        </center>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loginCard = document.querySelector(".login-card");
+        const signupCard = document.querySelector(".signup-card");
+        const loginLink = document.querySelector(".login-link");
+        const signupLink = document.querySelector(".signup-link");
+        const showPasswordIcon = document.getElementById("show-password");
+        const passwordInput = document.getElementById("password");
+        const usernameInput = document.getElementById("username");
+
+        loginLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            loginCard.style.display = "block";
+            signupCard.style.display = "none";
+        });
+
+        signupLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            loginCard.style.display = "none";
+            signupCard.style.display = "block";
+        });
+
+        showPasswordIcon.addEventListener("click", function() {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordIcon.classList.remove("fa-eye");
+                showPasswordIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                showPasswordIcon.classList.remove("fa-eye-slash");
+                showPasswordIcon.classList.add("fa-eye");
+            }
+        });
+
+        usernameInput.addEventListener("input", function() {
+            const username = usernameInput.value.trim();
+            if (username.length !== 4 && username.length !== 8) {
+                alert("Username must be either 4 or 8 digits long.");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

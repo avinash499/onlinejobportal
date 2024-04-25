@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            background-color: white; /* Red color for ERP style */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000; /* White text color */
+
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000; /* White text color */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ccc; /* Light gray text color on hover */
+        }
+
+        .login-btn {
+            background-color: #fff;
+            color: #ff0000; /* Red color for ERP style */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none; /* Added to override default button underline */
+        }
+
+        .login-btn:hover {
+            background-color: #ff0000; /* Red color on hover */
+            color: #fff; /* White text color on hover */
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        /* Service Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1 align="center">OUR SERVICE</h1>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">📝</div>
+                <div class="service-title">Resume Builder</div>
+                <div class="service-description">Create professional resumes that stand out to employers.</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <div class="service-title">Job Listings</div>
+                <div class="service-description">Access thousands of job listings from top companies worldwide.</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📞</div>
+                <div class="service-title">Interview Preparation</div>
+                <div class="service-description">Prepare for interviews with our expert guidance and resources.</div>
+            </div>
+        </div>
+
+        <h1 align="center">CONTACT US</h1>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">📞</div>
+                <div class="service-title">Phone</div>
+                <div class="service-description">+1 (123) 456-7890</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📧</div>
+                <div class="service-title">Email</div>
+                <div class="service-description">info@example.com</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <div class="service-title">Address</div>
+                <div class="service-description">123 Street Name, City, Country</div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved by DUDEKULA SALEEM.</p>
+        </center>
+    </footer>
+</div>
+</body>
+</html>

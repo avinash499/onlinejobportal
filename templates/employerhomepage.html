@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Employer Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            background-image: url('https://media.istockphoto.com/id/1316418188/vector/megaphone-with-job-speech-bubble-banner-slogan-about-job-loudspeaker-label-for-business.jpg?s=612x612&w=0&k=20&c=xCTE7qvwyw2nR7jiDeFVaI2Ih0zKgdwPEGWJgQ1KNLk=');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 98%;
+            z-index: 1000;
+            background-color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            transition: background-color 0.5s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ccc;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            right: 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .profile-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .login-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            animation: buttonAnimation 0.5s ease forwards;
+        }
+
+        .login-btn:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .search-bar {
+            width: 500px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            transition: width 0.5s ease;
+        }
+
+        .search-bar:focus {
+            width: 600px;
+        }
+
+        .search-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .search-btn:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .btn-discover {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-discover:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            display: inline;
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes buttonAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'employerhomepage' %}">Home</a></li>
+            <li><a href="{% url 'employermodule:view_job_details' %}">view jobs</a></li>
+            <li><a href="{% url 'employermodule:job_applications' %}">Dashboard</a></li>
+        </ul>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="nav-link"style ="color:black">Welcome, {{user.username}}</span>
+                </li>
+                <div class="profile-dropdown">
+                    <img id="current-profile-picture" src="" alt="Profile Picture" class="profile-image">
+                    <div class="dropdown-content">
+                        <a href="{% url 'account_details' %}"><i class="fa fa-user"></i> Account</a>
+                        <a href="{% url 'user_profile' %}"><i class="fa fa-user-circle-o"></i> Profile</a>
+                        <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="content">
+        <div class="search-container">
+            <input type="text" placeholder="Enter Keywords..." class="search-bar" id="searchBar">
+            <button class="search-btn" onclick="searchFunction()">Search</button>
+        </div>
+        <br><br>
+        <a href="{% url 'employermodule:jobpost' %}" class="btn-discover"> Post a Job</a>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br><br>
+            <center>
+                <p class="copyright">&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+            </center>
+        </footer>
+    </div>
+    <input type="hidden" id="profile-photo-url" value="{{ user_details.profile_image.url }}">
+    <script>
+         window.onload = function() {
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var storedProfile = localStorage.getItem(loggedInUser);
+                if (storedProfile) {
+                    var userProfile = JSON.parse(storedProfile);
+                    document.getElementById('current-profile-picture').src = userProfile.profilePicture;
+                }
+            }
+        };
+    </script>
+</body>
+</html>

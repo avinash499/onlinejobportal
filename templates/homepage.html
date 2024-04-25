@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Your existing CSS styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+
+        .navbar {
+            background-color: transparent;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensuring it's above other content */
+            transition: background-color 0.3s ease; /* Added transition */
+        }
+
+        .navbar.navbar-scrolled {
+            background-color: #fff; /* Changed color when scrolled */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added shadow when scrolled */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            color: #000; /* Logo color */
+        }
+
+        .logo-image {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #999; /* Hover color */
+        }
+
+        .login-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .content {
+            position: relative;
+        }
+
+        .big-image {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* This will make the image cover the entire viewport */
+            overflow: hidden;
+        }
+
+        .big-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the entire area */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .btn-discover {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-discover:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        /* New Footer Styles */
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <nav class="navbar" id="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <a href="{% url 'login' %}" class="login-btn"> Login</a>
+    </nav>
+  <br><br><br>
+    <div class="content">
+        <div class="big-image">
+           <img src="https://t3.ftcdn.net/jpg/05/10/62/62/240_F_510626205_gw8EvWhPp3MT1GD7l8fvE6mZyEHtLUxm.jpg" alt="Big Image">
+     <style>
+    .overlay h1.title, .overlay p.description {
+        color: black;
+        text-shadow: 1px 2px 3px white;
+    }
+</style>
+            <div class="overlay">
+                <h1 class="title">Explore Your Next Career Move</h1>
+<p class="description">Unlock numerous career opportunities and connect with leading companies. Find the perfect career Anytime, Anywhere.</p>
+
+                <a href="{% url 'read' %}" class="btn-discover">Learn More...</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+    <div class="footer-basic">
+        <footer>
+
+            <div class="social"><a href="#"><i class="fa fa-facebook"></i></a><a href="https://www.google.co.in/"><i class="fa fa-google"></i></a><a
+                    href="https://www.linkedin.com/in/vamsi-krishna-gondu-0bba5124b/?originalSubdomain=in"><i class="fa fa-linkedin"></i></a><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-twitter"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br><br>
+            <center>
+                <p class="copyright">&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+            </center>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript to add animation to navbar when scrolling
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#navbar').addClass('navbar-scrolled');
+            } else {
+                $('#navbar').removeClass('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

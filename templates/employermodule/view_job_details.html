@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job View</title>
+    <!-- Load static files -->
+    {% load static %}
+    <!-- Include Bootstrap CSS for navbar and footer -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* Custom styles */
+        body {
+            padding-bottom: 0;
+            background-color: #f2f2f2;
+        }
+
+        .card {
+    background-color: black; /* Set background color of job card */
+    color: white; /* Set text color to white */
+}
+
+.card-title {
+    color: white; /* Set title color to white */
+}
+
+.card-text {
+    color: white; /* Set text color to white */
+}
+
+.btn-primary,
+.btn-danger {
+    background-color: white; /* Set button background color to white */
+    color: black; /* Set button text color to black */
+    border: none; /* Remove button border */
+}
+
+.btn-primary:hover,
+.btn-danger:hover {
+    background-color: #ccc; /* Change button background color on hover */
+    color: black; /* Change button text color on hover */
+}
+
+
+        .container {
+            padding-top: 70px; /* Adjusted for the navbar height */
+        }
+
+        .navbar {
+            background-color: white; /* Red color */
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        .navbar .logo {
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 15px;
+        }
+
+        .nav-links li a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'employerhomepage' %}">Home</a></li>
+        </ul>
+    </nav>
+
+    <br><br><br>
+    <!-- Content -->
+    <div class="container">
+        <h1 align="center">List of Jobs</h1><br>
+        <div class="row">
+            {% for job_details in job_details_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job_details.work_title }}</h5>
+                        <p class="card-text">Salary Offered: {{ job_details.salary_offered }}</p>
+                        <p class="card-text">Job Type: {{ job_details.get_job_type_display }}</p>
+                        <p class="card-text">Benefits: {{ job_details.benefits }}</p>
+                        <p class="card-text">Education: {{ job_details.education }}</p>
+                        <p class="card-text">Work Location: {{ job_details.work_location }}</p>
+                        <p class="card-text">Required Skills: {{ job_details.required_skills }}</p>
+                        <a href="{% url 'employermodule:edit_job_details' job_details.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'employermodule:delete_job_details' job_details.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved.</p>
+        </center>
+    </footer>
+</div>
+
+    <!-- Include Bootstrap JS for navbar toggling -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>User Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .profile-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            animation: fadein 1s;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-picture img:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: left; /* Align text to the left */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .contact-info input,
+        .address textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        #gender {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        button:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .user-profile-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            animation: fadein 1s;
+        }
+
+        .user-profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .change-profile-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .change-profile-btn:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+         .heading {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #000;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            width: 100%;
+
+            bottom: 0;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+
+
+    </style>
+</head>
+  <div class="navbar">
+        <span class="logo">OJP</span>
+        <ul class="nav-links">
+            <li><a href="{% url 'jobseekerhomepage' %}">Home</a></li>
+        </ul>
+    </div>
+<body>
+<br><br><br><br><br><br>
+    <div class="user-profile-card">
+        <h2>User Profile</h2>
+        <div class="profile-picture" onclick="openModal()">
+            <img id="current-profile-picture" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture">
+        </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Edit Profile</h2>
+                <div class="profile-picture">
+                    <img id="new-profile-picture" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture">
+                    <label for="profile-picture-input" class="change-profile-btn">Change profile picture</label>
+                    <input type="file" id="profile-picture-input" accept="image/*" onchange="previewProfilePicture(event)" style="display:none;">
+                </div>
+                <br>
+                <div class="contact-info">
+                    <label for="Name">Enter Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                    <label for="Username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                    <label for="Dob">Enter Dob:</label>
+                    <input type="date" id="dob" placeholder="Enter your date of birth" min="1800-01-01" max="2004-12-31">
+                    <label for="Gender">Enter gender:</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <label for="Email">Enter Your email:</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <label for=" Contact">Enter Your Contact no:</label>
+                    <input type="text" id="contact-input" placeholder="Enter your contact">
+                </div>
+                <div class="address">
+                    <label for="address">Enter Your Address:</label>
+                    <textarea id="address-input" placeholder="Enter your address"></textarea>
+                </div>
+                <center>
+                    <button onclick="saveChanges()">Save Changes</button>
+                </center>
+            </div>
+        </div>
+
+        <div class="user-details">
+            <p><strong> Enter the Name:</strong> <span id="user-name"></span></p>
+            <p><strong>Username:</strong> <span id="user-username"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="user-dob"></span></p>
+            <p><strong>Gender:</strong> <span id="user-gender"></span></p>
+            <p><strong>Email:</strong> <span id="user-email"></span></p>
+            <p><strong>Contact:</strong> <span id="user-contact"></span></p>
+            <p><strong>Address:</strong> <span id="user-address"></span></p>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+     <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br>
+            <center>
+                <p class="copyright">&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+            </center>
+        </footer>
+    </div>
+    <script>
+        // Load user profile data from localStorage if available
+        window.onload = function() {
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var storedProfile = localStorage.getItem(loggedInUser);
+                if (storedProfile) {
+                    var userProfile = JSON.parse(storedProfile);
+                    document.getElementById('current-profile-picture').src = userProfile.profilePicture;
+                    document.getElementById('name').value = userProfile.name;
+                    document.getElementById('username').value = userProfile.username;
+                    document.getElementById('dob').value = userProfile.dob;
+                    document.getElementById('gender').value = userProfile.gender;
+                    document.getElementById('email').value = userProfile.email;
+                    document.getElementById('contact-input').value = userProfile.contact;
+                    document.getElementById('address-input').value = userProfile.address;
+
+                    // Display user details on the card
+                    document.getElementById('new-profile-picture').src = userProfile.profilePicture;
+                    document.getElementById('user-name').innerText = userProfile.name;
+                    document.getElementById('user-username').innerText = userProfile.username;
+                    document.getElementById('user-dob').innerText = userProfile.dob;
+                    document.getElementById('user-gender').innerText = userProfile.gender;
+                    document.getElementById('user-email').innerText = userProfile.email;
+                    document.getElementById('user-contact').innerText = userProfile.contact;
+                    document.getElementById('user-address').innerText = userProfile.address;
+                }
+            }
+        };
+
+        function openModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var storedProfile = localStorage.getItem(loggedInUser);
+                if (storedProfile) {
+                    var userProfile = JSON.parse(storedProfile);
+                    document.getElementById('new-profile-picture').src = userProfile.profilePicture;
+                    document.getElementById('name').value = userProfile.name;
+                    document.getElementById('username').value = userProfile.username;
+                    document.getElementById('dob').value = userProfile.dob;
+                    document.getElementById('gender').value = userProfile.gender;
+                    document.getElementById('email').value = userProfile.email;
+                    document.getElementById('contact-input').value = userProfile.contact;
+                    document.getElementById('address-input').value = userProfile.address;
+                }
+            }
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        function saveChanges() {
+            var newProfilePicture = document.getElementById("new-profile-picture").src;
+            var newName = document.getElementById("name").value;
+            var newUsername = document.getElementById("username").value;
+            var newDOB = document.getElementById("dob").value;
+            var newGender = document.getElementById("gender").value;
+            var newEmail = document.getElementById("email").value;
+            var newContact = document.getElementById("contact-input").value;
+            var newAddress = document.getElementById("address-input").value;
+
+            // Save changes to localStorage for the logged-in user
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var userProfile = {
+                    profilePicture: newProfilePicture,
+                    name: newName,
+                    username: newUsername,
+                    dob: newDOB,
+                    gender: newGender,
+                    email: newEmail,
+                    contact: newContact,
+                    address: newAddress
+                };
+                localStorage.setItem(loggedInUser, JSON.stringify(userProfile));
+            }
+
+            closeModal();
+
+            document.getElementById('current-profile-picture').src = newProfilePicture;
+            document.getElementById('user-name').innerText = newName;
+            document.getElementById('user-username').innerText = newUsername;
+            document.getElementById('user-dob').innerText = newDOB;
+            document.getElementById('user-gender').innerText = newGender;
+            document.getElementById('user-email').innerText = newEmail;
+            document.getElementById('user-contact').innerText = newContact;
+            document.getElementById('user-address').innerText = newAddress;
+        }
+
+        function previewProfilePicture(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var newProfilePicture = document.getElementById("new-profile-picture");
+                newProfilePicture.src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+</body>
+</html>

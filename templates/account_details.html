@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .heading {
+            text-align: center;
+            color: #333;
+        }
+
+        .user-details-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease-out;
+            padding: 20px;
+        }
+
+        .user-details-card p {
+            margin: 10px 0;
+        }
+
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-picture img:hover {
+            transform: scale(1.1);
+        }
+
+        .edit-profile-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .edit-profile-link i {
+            margin-right: 5px;
+        }
+
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #000;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            width: 100%;
+
+            bottom: 0;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span class="logo">OJP</span>
+        <ul class="nav-links">
+            <li><a href="">Home</a></li>
+        </ul>
+    </div>
+  <br><br>
+    <div class="container">
+        <h1 class="heading">Account Details</h1>
+        <div class="user-details-card">
+            <div class="profile-picture">
+                <img id="current-profile-picture" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture">
+            </div>
+            <p><strong>Username:</strong> {{ user_details.username }}</p>
+            <p><strong>Email:</strong> {{ user_details.email }}</p>
+            <p><strong>First Name:</strong> {{ user_details.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user_details.last_name }}</p>
+            <a href="{% url 'user_profile' %}" class="edit-profile-link"><i class="fa fa-edit"></i> Edit Profile</a>
+        </div>
+    </div>
+<br><br><br><br><br>
+     <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br>
+            <center>
+                <p class="copyright">&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+            </center>
+        </footer>
+    </div>
+
+    <script>
+        // Load user profile data from localStorage if available
+        window.onload = function() {
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var storedProfile = localStorage.getItem(loggedInUser);
+                if (storedProfile) {
+                    var userProfile = JSON.parse(storedProfile);
+                    document.getElementById('current-profile-picture').src = userProfile.profilePicture;
+                }
+            }
+        };
+    </script>
+</body>
+</html>

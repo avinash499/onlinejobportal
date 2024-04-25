@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Portal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 100px; /* Added padding to compensate for fixed navbar */
+        }
+
+        .navbar {
+            background-color: white; /* Changed background to white */
+            padding: 10px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: black; /* Changed text color to red */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensuring it's above other content */
+            transition: background-color 0.5s ease; /* Added transition */
+        }
+
+        .navbar.fixed {
+            box-shadow: 0 4px 6px -6px black; /* Added shadow when fixed */
+        }
+
+        .navbar h1 {
+            margin: 0;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            margin-right: 20px;
+        }
+
+        .navbar ul li:last-child {
+            margin-right: 0;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: black; /* Changed text color to red */
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #f2f2f2; /* Light grey */
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        .read-more-btn {
+            background-color: #ff0000; /* Red */
+            color: white; /* White text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Added transition */
+        }
+
+        .read-more-btn:hover {
+            background-color: #8b0000; /* Darker red */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Add animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9); /* Initial scale */
+            }
+            to {
+                opacity: 1;
+                transform: scale(1); /* Final scale */
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out; /* Adjusted animation duration */
+        }
+
+        /* Style for images */
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            animation: moveImages 1s infinite alternate; /* Animation for image movement */
+        }
+
+        .image-container img {
+            width: 30%; /* Set images to 30% width of container */
+            max-width: 100%; /* Ensure images don't exceed container width */
+            animation: fadeIn 1s ease-in-out; /* Apply fade-in animation */
+        }
+
+        @keyframes moveImages {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px); /* Move images up by 10px */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <h1>OJP</h1>
+    <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+    </ul>
+</div>
+<br><br><br><br><br><br>
+<div class="container">
+    <h2>Job Portal Information</h2>
+    <p>Welcome to our job portal! We aim to connect job seekers with their dream jobs and help employers find the right candidates. Our platform offers a wide range of job listings across various industries and locations. Whether you're a recent graduate looking for your first job or an experienced professional seeking new opportunities, we've got you covered.</p>
+    <p>With user-friendly features and advanced search options, you can easily browse through thousands of job postings and apply to those that match your skills and preferences. Employers can also create profiles, post job openings, and manage applications efficiently.</p>
+    <p>Our mission is to simplify the job search process for both job seekers and employers, making it easier for talent to connect with opportunities and for businesses to find the talent they need to thrive. Start exploring our job portal today and take the next step towards your career goals!</p>
+    <button id="read-more-btn" class="read-more-btn">Read More</button>
+    <div id="more-content" class="hidden fade-in">
+        <div class="image-container">
+            <!-- Added image -->
+            <img src="https://img.freepik.com/free-vector/choice-worker-concept-illustrated_52683-44076.jpg?size=300&ext=jpg" alt="Job Portal Image">
+            <!-- Added another image -->
+            <img src="https://img.freepik.com/free-photo/resume-apply-work-form-concept_53876-148017.jpg" alt="Job Portal Image">
+
+        </div>
+        <p>A job portal is a website or online platform that connects job seekers with potential employers. Job portals are an important part of the hiring process. They can help job seekers find jobs and increase their visibility to employers. They can also help employers post job listings and find candidates....</p>
+        <p>Employers use job portals to advertise job openings and manage the application process. They can create accounts, post job listings, and review applications from job seekers. Job portals often include features such as resume databases, applicant tracking systems, and communication tools to streamline the hiring process.</p>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+        </center>
+    </footer>
+</div>
+
+<script>
+    document.getElementById("read-more-btn").addEventListener("click", function() {
+        document.getElementById("more-content").classList.toggle("hidden");
+    });
+</script>
+</body>
+</html>

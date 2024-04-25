@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            background-color: #ffffff; /* Changed to white */
+            padding: 15px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000; /* Black text color */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999; /* Ensuring it stays on top */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000; /* Black text color */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #777; /* Darker gray text color on hover */
+        }
+
+        .content {
+            padding: 20px;
+            padding-top: 70px; /* Adjusted for the navbar height */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-section {
+            flex: 1;
+            padding-left: 20px; /* Adjusted padding */
+        }
+
+        .about-section h5 {
+            margin-top: 0; /* Reset margin */
+        }
+
+        .about-section h2 {
+            margin-top: 10px; /* Adjusted margin */
+        }
+
+        .about-section p {
+            margin-bottom: 20px; /* Adjusted margin */
+        }
+
+        .image-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+            margin-top: 50px; /* Added margin to avoid overlapping with footer */
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'service' %}">Our Service</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="about-section">
+            <h3>Who we are</h3>
+            <h2>Welcome to Job Portal</h2>
+            <p>An online job portal functions as a platform that connects job seekers with employers. Here's how it typically works:</p>
+            <p>A job portal is a website where people who need jobs can find jobs and companies looking for job seekers can find the perfect employees. It serves as a medium where job seekers can create profiles, upload resumes, and search for job openings across various industries and locations.</p>
+        </div>
+        <div class="image-section">
+            <img src="https://blog.pyjamahr.com/wp-content/uploads/2021/12/jobmain1.png" alt="">
+        </div>
+    </div>
+
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br><br>
+            <center>
+                <p>&copy; 2024 Job Portal. All rights reserved.</p>
+            </center>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Job Portal - Companies</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .company-card {
+        width: 300px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px 10px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.5s;
+    }
+
+    .company-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .company-card::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        transition: border-color 0.3s;
+    }
+
+    .company-card:hover::before {
+        border-color: #dc3545;
+    }
+
+    .company-logo {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .company-info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .company-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .company-description {
+        color: #666;
+        line-height: 1.5;
+    }
+
+    .company-details {
+        margin-top: auto;
+    }
+
+    .company-details p {
+        margin: 5px 0;
+        color: #888;
+    }
+
+    .card-link {
+        color: #dc3545; /* Set the link color */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s; /* Add transition effect */
+    }
+
+    .card-link:hover {
+        color: #c82333; /* Darken the link color on hover */
+    }
+</style>
+</head>
+<body>
+
+<!-- Company Cards Container -->
+<div class="container">
+    <div class="company-card" id="company1">
+        <img class="company-logo" src="https://flatironschool.com/wp-content/uploads/2022/11/Resized-blog-thumbnail-17.png" alt="Company 1 Logo">
+        <div class="company-info">
+            <h2 class="company-name">Amazon</h2>
+            <p class="company-description">Indian employment website operating in India and Middle East</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> DELHI, INDIA</p>
+                <p><strong>CEO:</strong> Samir Jain </p>
+                <p><strong>Website:</strong> <span class="card-link">www.timesjobs.com</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="company-card" id="company2">
+        <img class="company-logo" src="https://jobs.netflix.com/static/images/Netflix-Social-Rectangle.png" alt="Company 2 Logo">
+        <div class="company-info">
+            <h2 class="company-name"> Netflix</h2>
+            <p class="company-description"> Indeed is an American job search website that launched in 2004. It is a subsidiary of Japan's Recruit Holdings and has offices around the world.</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> Austin, Texas</p>
+                <p><strong>CEO:</strong> Paul Forster</p>
+                <p><strong>Website:</strong> <span class="card-link">www.in.indeed.com</span></p>
+            </div>
+        </div>
+    </div>
+    <!-- Add more company cards here -->
+    <div class="company-card" id="company2">
+        <img class="company-logo" src="https://image.shutterstock.com/image-photo/image-260nw-182075189.jpg" alt="Company 2 Logo">
+        <div class="company-info">
+            <h2 class="company-name"> Accenture</h2>
+            <p class="company-description"> Accenture is a global professional services company with leading capabilities in digital, cloud, and security. Combining unmatched experience and specialized skills across more than 40 industries, we offer Strategy and Consulting, Interactive, Technology, and Operations services—all powered by the world’s largest network of Advanced Technology and Intelligent Operations centers.</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> Dublin, Ireland</p>
+                <p><strong>CEO:</strong> Julie Sweet</p>
+                <p><strong>Website:</strong> <span class="card-link">www.accenture.com</span></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="company-card" id="company2">
+        <img class="company-logo" src="https://static.vecteezy.com/system/resources/previews/020/190/469/non_2x/infosys-logo-infosys-icon-free-free-vector.jpg" alt="Company 2 Logo">
+        <div class="company-info">
+            <h2 class="company-name"> Infosys</h2>
+            <p class="company-description"> Infosys is a global leader in consulting, technology, and outsourcing solutions. As a proven partner focused on building tomorrow's enterprise, Infosys enables clients in more than 30 countries to outperform the competition and stay ahead of the innovation curve.</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> Bangolore, Texas</p>
+                <p><strong>CEO:</strong>  Salil Parekh</p>
+                <p><strong>Website:</strong> <span class="card-link">www.infosys.com</span></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="company-card" id="company2">
+        <img class="company-logo" src="https://m.economictimes.com/thumb/msid-74861589,width-1200,height-900,resizemode-4,imgsize-35143/tech-mahindra-tweaks-brand-logo-to-convey-solidarity-in-fight-against-covid-19.jpg" alt="Company 2 Logo">
+        <div class="company-info">
+            <h2 class="company-name"> Tech Mahindra</h2>
+            <p class="company-description"> Tech Mahindra is a global leader in consulting, technology, and outsourcing solutions. As a proven partner focused on building tomorrow's enterprise, Infosys enables clients in more than 30 countries to outperform the competition and stay ahead of the innovation curve.</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> Bangolore, Texas</p>
+                <p><strong>CEO:</strong>  Salil Parekh</p>
+                <p><strong>Website:</strong> <span class="card-link">www.infosys.com</span></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="company-card" id="company2">
+        <img class="company-logo" src="https://glassbulletin.com/wp-content/uploads/2021/03/Ozone-Logo.jpg" alt="Company 2 Logo">
+        <div class="company-info">
+            <h2 class="company-name"> Ozone</h2>
+            <p class="company-description"> Ozone is a global leader in consulting, technology, and outsourcing solutions. As a proven partner focused on building tomorrow's enterprise, Infosys enables clients in more than 30 countries to outperform the competition and stay ahead of the innovation curve.</p>
+            <div class="company-details">
+                <p><strong>Location:</strong> Bangolore, Texas</p>
+                <p><strong>CEO:</strong>  Salil Parekh</p>
+                <p><strong>Website:</strong> <span class="card-link">www.infosys.com</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Listings</title>
+    <!-- Load static files -->
+    {% load static %}
+    <!-- Include Bootstrap CSS for navbar and footer -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            padding-bottom: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            padding-top: 70px;
+        }
+
+        .navbar {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 15px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+        .card {
+            background-color: #1a237e; /* Dark blue color */
+            color: #fff;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .btn-primary,
+        .btn-danger {
+            background-color: #fff;
+            color: #000;
+            border: none;
+        }
+
+        .btn-primary:hover,
+        .btn-danger:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'jobseekerhomepage' %}">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <h1 align="center">List of Jobs</h1><br>
+        <div class="row">
+            {% for job_details_list in job_details_list %}
+            <div class="col-md-4 mb-4">
+                <br><br>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job_details_list.work_title }}</h5>
+                        <p class="card-text">Salary Offered: {{ job_details_list.salary_offered }}</p>
+                        <p class="card-text">Job Type : {{ job_details_list.job_type }}</p>
+                        <p class="card-text">Benefits: {{ job_details_list.benefits }}</p>
+                        <p class="card-text">Education: {{ job_details_list.education }}</p>
+                        <p class="card-text">Work Location: {{ job_details_list.work_location }}</p>
+                        <p class="card-text">Required Skills: {{ job_details_list.required_skills }}</p>
+                        <!-- Display other job details as needed -->
+                        <center>
+                            <a href="{% url 'jobseekermodule:job_application_list' %}" class="btn btn-primary">Apply to this job</a><br>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br><br><br>
+    <!-- Footer -->
+    <div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved.</p>
+        </center>
+    </footer>
+</div>
+</body>
+</html>

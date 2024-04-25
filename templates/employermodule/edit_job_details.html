@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        /* Navbar */
+        .navbar {
+            background-color: white; /* Pure red color */
+            color: #ffffff; /* White color */
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+       .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+        /* Card */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            background-color: #fff; /* White color */
+        }
+        .card-title {
+            color: #007bff; /* Blue color */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Blue color */
+            border-color: #007bff; /* Blue color */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue color */
+            border-color: #0056b3; /* Darker blue color */
+        }
+        /* Content padding */
+        .content {
+            padding-bottom: 80px; /* Adjust according to footer height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'employermodule:view_job_details' %}">OJP</a>
+    </div>
+</nav>
+
+{% block body %}
+<div class="container mt-5 pt-5 content"> <!-- Add top padding to create space for the fixed-top navbar and bottom padding for the footer -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form method="post" action="{% url 'employermodule:edit_job_details' job_details.id %}">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="workTitle">Work Title:</label>
+                            <input type="text" class="form-control" name="workTitle" value="{{ job_details.work_title }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salaryOffered">Salary Offered:</label>
+                            <input type="text" class="form-control" name="salaryOffered" value="{{ job_details.salary_offered }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobType">Job Type:</label>
+                            <select class="form-control" name="jobType" required>
+                                <option value="fullTime" {% if job_details.job_type == 'fullTime' %}selected{% endif %}>Full-time</option>
+                                <option value="partTime" {% if job_details.job_type == 'partTime' %}selected{% endif %}>Part-time</option>
+                                <option value="contract" {% if job_details.job_type == 'contract' %}selected{% endif %}>Contract</option>
+                                <!-- Add more options if needed -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="benefits">Benefits:</label>
+                            <textarea class="form-control" name="benefits" required>{{ job_details.benefits }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education">Education:</label>
+                            <input type="text" class="form-control" name="education" value="{{ job_details.education }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for=" workLocation">Work Location:</label>
+                            <input type="text" class="form-control" name="workLocation" value="{{ job_details.work_location }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="requiredSkills">Required Skills:</label>
+                            <textarea class="form-control" name="requiredSkills" required>{{ job_details.required_skills }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="footer-basic">
+    <footer>
+        <div class="social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-google"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <br><br><br>
+        <center>
+            <p>&copy; 2024 Job Portal. All rights reserved.</p>
+        </center>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

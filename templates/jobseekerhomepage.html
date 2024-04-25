@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>jobseekers</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 98%;
+            z-index: 1000;
+            background-color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            transition: background-color 0.5s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+            padding: 8px 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-links li a:hover {
+            color: #ccc;
+        }
+
+        .login-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            animation: buttonAnimation 0.5s ease forwards;
+        }
+
+        .login-btn:hover {
+            background-color: #fff;
+            color: #ff0000;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            margin-top: 100px; /* Adjusted to account for the fixed navbar */
+        }
+
+        .job-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: calc(50% - 20px); /* Adjusted width to fit two cards in a row */
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: #000;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+
+
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-card h3 {
+            margin-top: 0;
+        }
+
+        .job-card p {
+            margin-bottom: 15px;
+        }
+
+        .job-card img {
+            width: 150px; /* Adjusted image width */
+            border-radius: 50%;
+            object-fit: cover;
+            height: 150px;
+            margin-right: 20px; /* Added margin to separate image from text */
+        }
+
+        .job-card-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .job-card-content h3 {
+            margin-top: 0;
+        }
+
+        .job-card-content p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .view-all {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff0000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .view-all:hover {
+            color: #000;
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            font-size: 16px;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+
+
+
+        @keyframes buttonAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+
+        /* Dropdown Styles */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image {
+            width: 40px; /* Adjust as needed */
+            height: 40px; /* Adjust as needed */
+            border-radius: 50%; /* To make it circular */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%; /* Position the dropdown below the profile image */
+            right: 0; /* Align the dropdown to the right edge of the profile image */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .profile-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .job-portal-images img {
+    width: auto;
+    height: 200px; /* Set a fixed height for all images */
+    object-fit: cover; /* Ensure the aspect ratio is maintained */
+    margin: 100px;
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .job-portal-images img {
+        width: 100%; /* Adjust image width for smaller screens */
+        height: auto;
+    }
+}
+
+
+        @media (max-width: 768px) {
+            .job-card {
+                width: 100%; /* Adjusted width for mobile devices */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'jobseekerhomepage' %}">Home</a></li>
+            <li><a href="">Jobs</a></li>
+            <li><a href="{% url 'jobseekermodule:job_details_list' %}">View Jobs</a></li>
+        </ul>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <span class="nav-link" style="color:black">Welcome, {{ user.username }}</span>
+            </li>
+            <div class="profile-dropdown">
+                <img id="current-profile-picture" src="" alt="Profile Picture" class="profile-image">
+                <div class="dropdown-content">
+                     <a href="{% url 'account_details' %}"><i class="fa fa-user"></i> Account</a>
+                        <a href="{% url 'user_profile' %}"><i class="fa fa-user-circle-o"></i> Profile</a>
+                        <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    <br><br>
+    <div class="content">
+        <h1>WELCOME TO JOBSEEKER HOMEPAGE</h1>
+        <div class="job-portal-images">
+            <img src="https://media.istockphoto.com/id/1394701218/photo/job-search-concept-find-your-career-woman-looking-at-online-website-by-laptop-computer-people.jpg?s=612x612&w=0&k=20&c=V32cT3dAoI7plQSnV-i7YxP43YvaoyA0jLS4729gNWM="
+                alt="Image 1">
+            <img src="https://st4.depositphotos.com/12985790/22703/i/450/depositphotos_227039222-stock-photo-close-shot-wooden-blocks-jobs.jpg"
+                alt="Image 2">
+            <img src="https://media.istockphoto.com/id/1488824909/photo/decide-commit-focus-succeed-text-on-wooden-blocks-with-alarm-clock-on-white-cover-background.webp?b=1&s=170667a&w=0&k=20&c=siiDS1p3Qt6VQ4wT37OhS5xkq6mx0zSP_7SrH4QGqMY="
+                alt="Image 3">
+            <img src="https://media.istockphoto.com/id/1349094945/photo/human-using-a-computer-laptop-for-searching-for-job-and-fill-out-personal-data-on-job-website.jpg?s=612x612&w=0&k=20&c=nVCY302pin29eP1rN0eBGstQN3WF4YQTWvZ4TvAs21g="
+                alt="Image 2">
+        </div>
+        <div class="card">
+            <h2>Featured Jobs</h2>
+            <p>Here are some of our top job listings:</p>
+            <div class="job-cards">
+                <a href="https://www.nestle.in/jobs" class="job-card">
+                    <img src="https://canadajobbank.org/wp-content/uploads/2021/06/Nestle-300x204.jpg" alt="Job 1">
+                    <div class="job-card-content">
+                        <h3>Nestle India</h3>
+                        <p>Food and Beverage</p>
+                    </div>
+                </a>
+                <a href="https://www.sonyjobs.com/" class="job-card">
+                    <img src="https://www.sony.com/en/SonyInfo/Careers/jnvm8c000001ejsb-img/csl_sp.jpg" alt="Job 2">
+                    <div class="job-card-content">
+                        <h3>Sony</h3>
+                        <p>Consumer Electronics</p>
+                    </div>
+                </a>
+                <a href="https://www.toyotabharat.com/careers/" class="job-card">
+                    <img src="https://cdn.phenompeople.com/CareerConnectResources/TOYOUS/social/og-share-logo-1638900220844.png" alt="Job 3">
+                    <div class="job-card-content">
+                        <h3>Toyota</h3>
+                        <p>Automobile</p>
+                    </div>
+                </a>
+                <!-- Add more job cards as needed -->
+            </div>
+            <a href="{% url 'company' %}" class="view-all">View All</a>
+        </div>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br>
+            <center>
+                <p>&copy; 2024 Job Portal. All rights reserved by KLU.</p>
+            </center>
+        </footer>
+    </div>
+ <script>
+        // Load user profile data from localStorage if available
+        window.onload = function() {
+            var loggedInUser = "{{ user.username }}"; // Get the currently logged-in username from the template
+            if (loggedInUser) {
+                var storedProfile = localStorage.getItem(loggedInUser);
+                if (storedProfile) {
+                    var userProfile = JSON.parse(storedProfile);
+                    document.getElementById('current-profile-picture').src = userProfile.profilePicture;
+                }
+            }
+        };
+    </script>
+</body>
+</html>

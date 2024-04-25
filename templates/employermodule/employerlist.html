@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Applications</title>
+    <style>
+        body {
+            background-color: #f2f2f2; /* Changed background color to light gray */
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color:  #FF0000;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-right: 8px; /* Add margin between buttons */
+            margin-bottom: 8px; /* Add margin below buttons */
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+        }
+
+        .btn-success:hover {
+            background-color: #45a049;
+            animation: pulse 1s infinite; /* Add animation */
+        }
+
+        .btn-danger {
+            background-color: #0000FF;
+        }
+
+        .btn-danger:hover {
+            background-color: #da190b;
+            animation: pulse 1s infinite; /* Add animation */
+        }
+
+        /* Keyframes for pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .navbar {
+            background-color:  #1E90FF; /* Changed to white */
+            padding: 13px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000; /* Black text color */
+            position: fixed;
+            top: 0;
+            width: 99%;
+            z-index: 999; /* Ensuring it stays on top */
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-right: 25px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #000; /* Black text color */
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #000; /* Darker gray text color on hover */
+        }
+
+        .content {
+            padding: 20px;
+            padding-top: 70px; /* Adjusted for the navbar height */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+       .footer-basic {
+            padding: 40px 0;
+            background-color: #ffffff;
+            color: #4b4c4d;
+            text-align: center;
+            width: 100%;
+            margin-top: 50px; /* Added margin to avoid overlapping with footer */
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer-basic .social>a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin: 0 8px;
+            color: inherit;
+            opacity: 0.75;
+        }
+
+        .footer-basic .social>a:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OJP</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'employerhomepage' %}">Home</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <br><br><br><br>
+        {% block body %}
+        <h1 align="center">Job Applications</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Job Details</th>
+                    <th>Resume</th>
+                    <th>Cover Letter</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job_application in job_applications %}
+                    <tr>
+                        <td>{{ job_application.name }}</td>
+                        <td>{{ job_application.email }}</td>
+                        <td>{{ job_application.job_details }}</td>
+                        <td>
+                            {% if job_application.resume %}
+                                <a href="{{ job_application.resume.url }}" target="_blank">Download Resume</a>
+                            {% else %}
+                                No resume uploaded
+                            {% endif %}
+                        </td>
+                        <td>{{ job_application.cover_letter }}</td>
+
+                        <td>
+                            <a href="#" class="btn btn-success">Schedule Interview</a>
+                            <a href="#" class="btn btn-danger">Application Rejected</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endblock %}
+    </div>
+    <br><br><br>
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-google"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <br><br><br>
+            <center>
+                <p>&copy; 2024 Job Portal. All rights reserved.</p>
+            </center>
+        </footer>
+    </div>
+</body>
+</html>
