@@ -165,6 +165,7 @@
                         <p class="card-text">Education: {{ job_details.education }}</p>
                         <p class="card-text">Work Location: {{ job_details.work_location }}</p>
                         <p class="card-text">Required Skills: {{ job_details.required_skills }}</p>
+                        <p class="card-text">experience: {{ job_details.experience }}</p>
                         <a href="{% url 'employermodule:edit_job_details' job_details.id %}" class="btn btn-primary">Edit</a>
                         <a href="{% url 'employermodule:delete_job_details' job_details.id %}" class="btn btn-danger">Delete</a>
                     </div>

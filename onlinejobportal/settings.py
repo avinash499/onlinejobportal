@@ -80,14 +80,20 @@ WSGI_APPLICATION = 'onlinejobportal.wsgi.application'
  ##   }
 #}
 
+#DATABASES = {
+ #   'default': {
+   #     'ENGINE': 'django.db.backends.postgresql',
+  #      'NAME': 'Jobportal',
+    #    'USER': 'postgres',
+   #     'PASSWORD': 'avinash',
+    #    'HOST': 'localhost',
+   #     'POST': '5432',
+  #  }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Jobportal',
-        'USER': 'postgres',
-        'PASSWORD': 'avinash',
-        'HOST': 'localhost',
-        'POST': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -132,3 +138,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sai7997242043@gmail.com'
+EMAIL_HOST_PASSWORD = 'yxsn ecno bkha lzmp'

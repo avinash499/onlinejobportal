@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>signup</title>
+    <title>Signup</title>
     <style>
         body {
             margin: 0;
@@ -18,13 +18,13 @@
             top: 0;
             width: 99%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.9); /* Change background color to white with some opacity */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #000; /* Change text color to black */
-            transition: background-color 0.3s ease; /* Add transition for smooth color change */
+            color: #000;
+            transition: background-color 0.3s ease;
         }
 
         .logo {
@@ -46,12 +46,12 @@
 
         .nav-links li a {
             text-decoration: none;
-            color: #ff0000; /* Change color to red */
+            color: #ff0000;
             transition: color 0.3s ease;
         }
 
         .nav-links li a:hover {
-            color: #cc0000; /* Change hover color to a darker shade of red */
+            color: #cc0000;
         }
 
         .content {
@@ -60,7 +60,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            margin-top: 100px; /* Added margin to compensate for the fixed navbar */
+            margin-top: 100px;
         }
 
         .signup-card {
@@ -178,7 +178,6 @@
             opacity: 0.9;
         }
 
-        /* Add animation for zooming in and out */
         @keyframes zoomInOut {
             0% {
                 transform: scale(1);
@@ -191,13 +190,73 @@
             }
         }
 
+        /* Dropdown button */
+        .dropbtn {
+            background-color: #ffffff;
+            color: #ff0000;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
 
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #ccc;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown content (hidden by default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
 <nav class="navbar">
     <div class="logo">OJP</div>
     <ul class="nav-links">
+        <li>
+            <div class="dropdown">
+                <button class="dropbtn">Select Role</button>
+                <div class="dropdown-content">
+                    <a href="#">Jobseeker</a>
+                    <a href="#">Employer</a>
+                </div>
+            </div>
+        </li>
         <li><a href="{% url 'homepage' %}">Home</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
@@ -205,7 +264,7 @@
 </nav>
 <br><br><br>
 <div class="content">
-    <div class="signup-card">
+    <div class="signup-card" style="..... ">
         <center>
             <img src="https://i.pinimg.com/originals/cf/3d/de/cf3ddea09792b8bffe3c4d9407679361.jpg" alt="Logo" style="width: 100%; max-width: 150px; margin-bottom: 20px;">
         </center>
@@ -255,14 +314,20 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
 
-        usernameInput.addEventListener("input", function() {
-            const username = usernameInput.value.trim();
-            if (username.length !== 4 && username.length !== 8) {
-                alert("Username must be either 4 or 8 digits long.");
+        emailInput.addEventListener("input", function() {
+            const email = emailInput.value.trim();
+            if (!isValidEmail(email)) {
+                alert("Please enter a valid email address.");
             }
         });
+
+        function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
     });
 </script>
 

@@ -20,7 +20,7 @@ def add_job_details(request):
         education = request.POST.get('education')
         work_location = request.POST.get('workLocation')
         required_skills = request.POST.get('requiredSkills')
-
+        experience = request.POST.get('experience')
         job_details = JobDetails(
             work_title=work_title,
             salary_offered=salary_offered,
@@ -29,6 +29,7 @@ def add_job_details(request):
             education=education,
             work_location=work_location,
             required_skills=required_skills,
+            experience=experience,
         )
         job_details.save()
         return render(request, 'employermodule/datainserted.html')
@@ -50,6 +51,7 @@ def edit_job_details(request, job_id):
         job_details.education = request.POST.get('education')
         job_details.work_location = request.POST.get('workLocation')
         job_details.required_skills = request.POST.get('requiredSkills')
+        job_details.experience = request.POST.get('experience')
         job_details.save()
         return redirect('employermodule:view_job_details')
     return render(request, 'employermodule/edit_job_details.html', {'job_details': job_details})

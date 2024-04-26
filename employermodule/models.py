@@ -15,7 +15,7 @@ class JobDetails(models.Model):
     education = models.CharField(max_length=255)
     work_location = models.CharField(max_length=255)
     required_skills = models.TextField()
-
+    experience = models.TextField(max_length=255)
     def __str__(self):
         return self.work_title
 
