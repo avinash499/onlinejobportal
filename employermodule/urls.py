@@ -12,5 +12,7 @@ urlpatterns = [
     path('delete/<int:job_id>/', views.delete_job_details, name='delete_job_details'),
     path('employerlist/', views.employerlist, name='employerlist'),
     path('job_applications/', views.job_applications, name='job_applications'),
+    path('accept_application/<int:job_application_id>/', views.accept_application, name='accept_application'),
+    # path('reject_application/<int:event_application_id>/', reject_application, name='reject_application'),
 
 ]

@@ -40,6 +40,10 @@ def signup(request):
     return render(request, 'signup.html')
 
 
+def password_reset(request):
+    return render(request, 'password_reset.html')
+
+
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 

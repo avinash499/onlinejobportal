@@ -1,6 +1,5 @@
 from employermodule.models import JobDetails
 
-
 def viewjobs(request):
     return render(request, 'jobseekermodule/viewjobs.html')
 
@@ -33,3 +32,4 @@ def submit_application(request):
     else:
         form = JobApplicationForm()
     return render(request, 'submit_application.html', {'form': form})
+

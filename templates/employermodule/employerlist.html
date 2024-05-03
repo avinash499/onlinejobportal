@@ -229,8 +229,8 @@
                         <td>{{ job_application.cover_letter }}</td>
 
                         <td>
-                            <a href="#" class="btn btn-success">Schedule Interview</a>
-                            <a href="#" class="btn btn-danger">Application Rejected</a>
+                            <a href="{% url 'employermodule:accept_application' job_application.id %}" class="btn btn-success">Application Accepted</a>
+                            <a href="#" class="btn btn-danger">Application Rejected</a>
                         </td>
                     </tr>
                 {% endfor %}

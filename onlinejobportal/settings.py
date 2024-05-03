@@ -24,8 +24,7 @@ SECRET_KEY = 'django-insecure-=!=5q^-4dz&d0%3!3ntvfmq5obn*d+wlh+=!mle$*y7+ml&($+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
-
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'onlinejobportal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,27 +74,27 @@ WSGI_APPLICATION = 'onlinejobportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
- ##   }
-#}
+# DATABASES = {
+#   'default': {
+##   }
+# }
 
-#DATABASES = {
- #   'default': {
-   #     'ENGINE': 'django.db.backends.postgresql',
-  #      'NAME': 'Jobportal',
-    #    'USER': 'postgres',
-   #     'PASSWORD': 'avinash',
-    #    'HOST': 'localhost',
-   #     'POST': '5432',
-  #  }
-#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Jobportal',
+        'USER': 'postgres',
+        'PASSWORD': 'avinash',
+        'HOST': 'localhost',
+        'POST': '5432',
     }
 }
+# DATABASES = {
+#  'default': {
+#      'ENGINE': 'django.db.backends.sqlite3',
+#      'NAME': BASE_DIR / 'db.sqlite3',
+#   }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -129,8 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = [
- #   BASE_DIR / 'static', ]
+# STATICFILES_DIRS = [
+#   BASE_DIR / 'static', ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -143,5 +142,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'sai7997242043@gmail.com'
-EMAIL_HOST_PASSWORD = 'yxsn ecno bkha lzmp'
+EMAIL_HOST_USER = 'avinash49922@gmail.com'
+EMAIL_HOST_PASSWORD = 'qyog ymnl pftu hksw'
+
+
+
+
+
